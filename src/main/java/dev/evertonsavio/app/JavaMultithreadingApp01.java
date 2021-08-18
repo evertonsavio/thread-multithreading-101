@@ -1,6 +1,6 @@
 package dev.evertonsavio.app;
 
-public class JavaMultithreadingApp {
+public class JavaMultithreadingApp01 {
 
     public static void main(String[] args) throws InterruptedException {
         Thread thread = new Thread(new Runnable() {
