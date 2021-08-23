@@ -10,6 +10,21 @@ public class ComplexCalculation {
             Calculate result = ( base1 ^ power1 ) + (base2 ^ power2).
             Where each calculation in (..) is calculated on a different thread
         */
+        PowerCalculatingThread thread1 = new PowerCalculatingThread(base1, power1);
+        PowerCalculatingThread thread2 = new PowerCalculatingThread(base2, power2);
+        thread1.start();
+        thread2.start();
+
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        result = thread1.getResult().add(thread2.getResult());
+
+
         return result;
     }
 
@@ -25,9 +40,15 @@ public class ComplexCalculation {
 
         @Override
         public void run() {
+
            /*
            Implement the calculation of result = base ^ power
            */
+
+            for(BigInteger i = BigInteger.ZERO; i.compareTo(power) != 0; i = i.add(BigInteger.ONE)){
+                result = result.multiply(base);
+            }
+
         }
 
         public BigInteger getResult() { return result; }
