@@ -4,7 +4,7 @@ import java.math.BigInteger;
         import java.util.ArrayList;
         import java.util.Arrays;
         import java.util.List;
-        
+
 public class JoinCoordination {
 
     public static void main(String[] args) throws InterruptedException {
@@ -21,8 +21,8 @@ public class JoinCoordination {
             thread.start();
         }
 
-        for (Thread thread : threads) {
-            thread.join(2000);
+        for (Thread thread : threads) { //Iterates till all threads terminate
+            thread.join(2000); // How long will wait then, if > than 2 sec thread will terminate. setDaemon(true)
         }
 
         for (int i = 0; i < inputNumbers.size(); i++) {
